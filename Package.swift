@@ -1,15 +1,14 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.4
 import PackageDescription
 
 let package = Package(
     name: "SQLite.swift",
     products: [.library(name: "SQLite", targets: ["SQLite"])],
     targets: [
-        .target(name: "SQLite", dependencies: ["SQLiteObjc"]),
-        .target(name: "SQLiteObjc"),
+        .target(name: "SQLite", dependencies: ["Csqlite3"]),
         .testTarget(name: "SQLiteTests", dependencies: ["SQLite"], path: "Tests/SQLiteTests")
     ],
-    swiftLanguageVersions: [4, 5]
+    swiftLanguageVersions: [.v4, .v5]
 )
 
 #if os(Linux)
@@ -20,5 +19,32 @@ let package = Package(
             "FTS4Tests.swift",
             "FTS5Tests.swift"
         ])
+    ]
+#endif
+
+#if os(Windows)
+    package.dependencies = [.package(path: "../Csqlite3")]
+    package.targets = [
+        .target(
+            name: "SQLite", 
+            dependencies: ["Csqlite3"], 
+            exclude: [
+                "Extensions/FTS4.swift", 
+                "Extensions/FTS5.swift",
+                "Info.plist"
+            ]
+        ),
+        .testTarget(
+            name: "SQLiteTests", 
+            dependencies: ["SQLite"], 
+            path: "Tests/SQLiteTests", 
+            exclude: [
+                "FTS4Tests.swift",
+                "FTS5Tests.swift",
+                "Info.plist",
+                "fixtures/encrypted-3.x.sqlite",
+                "fixtures/encrypted-4.x.sqlite"
+            ]
+        )
     ]
 #endif
