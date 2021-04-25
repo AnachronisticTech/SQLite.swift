@@ -23,7 +23,7 @@ let package = Package(
 #endif
 
 #if os(Windows)
-    package.dependencies = [.package(path: "../Csqlite3")]
+    package.dependencies = [.package(path: "../../Csqlite3")]
     package.targets = [
         .target(
             name: "SQLite", 
