@@ -20,14 +20,12 @@ let package = Package(
             "FTS5Tests.swift"
         ])
     ]
-#endif
-
-#if os(Windows)
-    package.dependencies = [.package(path: "../../Csqlite3")]
+#elseif os(Windows)
+    package.dependencies = [.package(url: "https://github.com/AnachronisticTech/CSQLite", .branch("master"))]
     package.targets = [
         .target(
             name: "SQLite", 
-            dependencies: ["Csqlite3"], 
+            dependencies: ["CSQLite"], 
             exclude: [
                 "Extensions/FTS4.swift", 
                 "Extensions/FTS5.swift",
