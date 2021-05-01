@@ -21,7 +21,7 @@ let package = Package(
         ])
     ]
 #elseif os(Windows)
-    package.dependencies = [.package(url: "https://github.com/AnachronisticTech/CSQLite", .branch("master"))]
+    package.dependencies = [.package(name: "CSQLite", url: "https://github.com/AnachronisticTech/CSQLite", from: "3.35.5")]
     package.targets = [
         .target(
             name: "SQLite", 
