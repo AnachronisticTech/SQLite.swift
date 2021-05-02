@@ -3,6 +3,44 @@ import SQLite
 
 class OperatorsTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_stringExpressionPlusStringExpression_buildsConcatenatingStringExpression", test_stringExpressionPlusStringExpression_buildsConcatenatingStringExpression),
+            ("test_numberExpression_plusNumberExpression_buildsAdditiveNumberExpression", test_numberExpression_plusNumberExpression_buildsAdditiveNumberExpression),
+            ("test_numberExpression_minusNumberExpression_buildsSubtractiveNumberExpression", test_numberExpression_minusNumberExpression_buildsSubtractiveNumberExpression),
+            ("test_numberExpression_timesNumberExpression_buildsMultiplicativeNumberExpression", test_numberExpression_timesNumberExpression_buildsMultiplicativeNumberExpression),
+            ("test_numberExpression_dividedByNumberExpression_buildsDivisiveNumberExpression", test_numberExpression_dividedByNumberExpression_buildsDivisiveNumberExpression),
+            ("test_numberExpression_prefixedWithMinus_buildsInvertedNumberExpression", test_numberExpression_prefixedWithMinus_buildsInvertedNumberExpression),
+            ("test_integerExpression_moduloIntegerExpression_buildsModuloIntegerExpression", test_integerExpression_moduloIntegerExpression_buildsModuloIntegerExpression),
+            ("test_integerExpression_bitShiftLeftIntegerExpression_buildsLeftShiftedIntegerExpression", test_integerExpression_bitShiftLeftIntegerExpression_buildsLeftShiftedIntegerExpression),
+            ("test_integerExpression_bitShiftRightIntegerExpression_buildsRightShiftedIntegerExpression", test_integerExpression_bitShiftRightIntegerExpression_buildsRightShiftedIntegerExpression),
+            ("test_integerExpression_bitwiseAndIntegerExpression_buildsAndedIntegerExpression", test_integerExpression_bitwiseAndIntegerExpression_buildsAndedIntegerExpression),
+            ("test_integerExpression_bitwiseOrIntegerExpression_buildsOredIntegerExpression", test_integerExpression_bitwiseOrIntegerExpression_buildsOredIntegerExpression),
+            ("test_integerExpression_bitwiseExclusiveOrIntegerExpression_buildsOredIntegerExpression", test_integerExpression_bitwiseExclusiveOrIntegerExpression_buildsOredIntegerExpression),
+            ("test_bitwiseNot_integerExpression_buildsComplementIntegerExpression", test_bitwiseNot_integerExpression_buildsComplementIntegerExpression),
+            ("test_equalityOperator_withEquatableExpressions_buildsBooleanExpression", test_equalityOperator_withEquatableExpressions_buildsBooleanExpression),
+            ("test_inequalityOperator_withEquatableExpressions_buildsBooleanExpression", test_inequalityOperator_withEquatableExpressions_buildsBooleanExpression),
+            ("test_greaterThanOperator_withComparableExpressions_buildsBooleanExpression", test_greaterThanOperator_withComparableExpressions_buildsBooleanExpression),
+            ("test_greaterThanOrEqualToOperator_withComparableExpressions_buildsBooleanExpression", test_greaterThanOrEqualToOperator_withComparableExpressions_buildsBooleanExpression),
+            ("test_lessThanOperator_withComparableExpressions_buildsBooleanExpression", test_lessThanOperator_withComparableExpressions_buildsBooleanExpression),
+            ("test_lessThanOrEqualToOperator_withComparableExpressions_buildsBooleanExpression", test_lessThanOrEqualToOperator_withComparableExpressions_buildsBooleanExpression),
+            ("test_patternMatchingOperator_withComparableCountableClosedRange_buildsBetweenBooleanExpression", test_patternMatchingOperator_withComparableCountableClosedRange_buildsBetweenBooleanExpression),
+            ("test_patternMatchingOperator_withComparableClosedRange_buildsBetweenBooleanExpression", test_patternMatchingOperator_withComparableClosedRange_buildsBetweenBooleanExpression),
+            ("test_patternMatchingOperator_withComparableRange_buildsBooleanExpression", test_patternMatchingOperator_withComparableRange_buildsBooleanExpression),
+            ("test_patternMatchingOperator_withComparablePartialRangeThrough_buildsBooleanExpression", test_patternMatchingOperator_withComparablePartialRangeThrough_buildsBooleanExpression),
+            ("test_patternMatchingOperator_withComparablePartialRangeUpTo_buildsBooleanExpression", test_patternMatchingOperator_withComparablePartialRangeUpTo_buildsBooleanExpression),
+            ("test_patternMatchingOperator_withComparablePartialRangeFrom_buildsBooleanExpression", test_patternMatchingOperator_withComparablePartialRangeFrom_buildsBooleanExpression),
+            ("test_patternMatchingOperator_withComparableClosedRangeString_buildsBetweenBooleanExpression", test_patternMatchingOperator_withComparableClosedRangeString_buildsBetweenBooleanExpression),
+            ("test_doubleAndOperator_withBooleanExpressions_buildsCompoundExpression", test_doubleAndOperator_withBooleanExpressions_buildsCompoundExpression),
+            ("test_doubleOrOperator_withBooleanExpressions_buildsCompoundExpression", test_doubleOrOperator_withBooleanExpressions_buildsCompoundExpression),
+            ("test_unaryNotOperator_withBooleanExpressions_buildsNotExpression", test_unaryNotOperator_withBooleanExpressions_buildsNotExpression),
+            ("test_precedencePreserved", test_precedencePreserved),
+            ("test_dateExpressionLessGreater", test_dateExpressionLessGreater),
+            ("test_dateExpressionRange", test_dateExpressionRange),
+            ("test_dateExpressionClosedRange", test_dateExpressionClosedRange),
+        ]
+    }()
+
     func test_stringExpressionPlusStringExpression_buildsConcatenatingStringExpression() {
         AssertSQL("(\"string\" || \"string\")", string + string)
         AssertSQL("(\"string\" || \"stringOptional\")", string + stringOptional)

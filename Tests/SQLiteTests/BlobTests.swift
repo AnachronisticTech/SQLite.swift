@@ -3,6 +3,14 @@ import SQLite
 
 class BlobTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_toHex", test_toHex),
+            ("test_init_array", test_init_array),
+            ("test_init_unsafeRawPointer", test_init_unsafeRawPointer),
+        ]
+    }()
+
     func test_toHex() {
         let blob = Blob(bytes: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 250, 255])
 

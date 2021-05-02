@@ -2,6 +2,14 @@ import XCTest
 import SQLite
 
 class FoundationTests : XCTestCase {
+
+    static var allTests = {
+        return [
+            ("testDataFromBlob", testDataFromBlob),
+            ("testBlobToData", testBlobToData),
+        ]
+    }()
+
     func testDataFromBlob() {
         let data = Data([1, 2, 3])
         let blob = data.datatypeValue

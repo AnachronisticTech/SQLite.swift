@@ -5,6 +5,18 @@ import SQLCipher
 
 class CipherTests: XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_key", test_key),
+            ("test_key_blob_literal", test_key_blob_literal),
+            ("test_rekey", test_rekey),
+            ("test_data_key", test_data_key),
+            ("test_data_rekey", test_data_rekey),
+            ("test_keyFailure", test_keyFailure),
+            ("test_open_db_encrypted_with_sqlcipher", test_open_db_encrypted_with_sqlcipher),
+        ]
+    }()
+
     let db1 = try! Connection()
     let db2 = try! Connection()
 

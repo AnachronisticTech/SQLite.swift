@@ -3,6 +3,19 @@ import SQLite
 
 class AggregateFunctionsTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_distinct_prependsExpressionsWithDistinctKeyword", test_distinct_prependsExpressionsWithDistinctKeyword),
+            ("test_count_wrapsOptionalExpressionsWithCountFunction", test_count_wrapsOptionalExpressionsWithCountFunction),
+            ("test_max_wrapsComparableExpressionsWithMaxFunction", test_max_wrapsComparableExpressionsWithMaxFunction),
+            ("test_min_wrapsComparableExpressionsWithMinFunction", test_min_wrapsComparableExpressionsWithMinFunction),
+            ("test_average_wrapsNumericExpressionsWithAvgFunction", test_average_wrapsNumericExpressionsWithAvgFunction),
+            ("test_sum_wrapsNumericExpressionsWithSumFunction", test_sum_wrapsNumericExpressionsWithSumFunction),
+            ("test_total_wrapsNumericExpressionsWithTotalFunction", test_total_wrapsNumericExpressionsWithTotalFunction),
+            ("test_count_withStar_wrapsStarWithCountFunction", test_count_withStar_wrapsStarWithCountFunction),
+        ]
+    }()
+
     func test_distinct_prependsExpressionsWithDistinctKeyword() {
         AssertSQL("DISTINCT \"int\"", int.distinct)
         AssertSQL("DISTINCT \"intOptional\"", intOptional.distinct)

@@ -3,6 +3,16 @@ import XCTest
 
 class DateAndTimeFunctionsTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_date", test_date),
+            ("test_time", test_time),
+            ("test_datetime", test_datetime),
+            ("test_julianday", test_julianday),
+            ("test_strftime", test_strftime),
+        ]
+    }()
+
     func test_date() {
         AssertSQL("date('now')", DateFunctions.date("now"))
         AssertSQL("date('now', 'localtime')", DateFunctions.date("now", "localtime"))
@@ -30,6 +40,16 @@ class DateAndTimeFunctionsTests : XCTestCase {
 }
 
 class DateExtensionTests : XCTestCase {
+
+    static var allTests = {
+        return [
+            ("test_time", test_time),
+            ("test_date", test_date),
+            ("test_datetime", test_datetime),
+            ("test_julianday", test_julianday),
+        ]
+    }()
+
     func test_time() {
         AssertSQL("time('1970-01-01T00:00:00.000')", Date(timeIntervalSince1970: 0).time)
     }
@@ -48,6 +68,16 @@ class DateExtensionTests : XCTestCase {
 }
 
 class DateExpressionTests : XCTestCase {
+
+    static var allTests = {
+        return [
+            ("test_date", test_date),
+            ("test_time", test_time),
+            ("test_datetime", test_datetime),
+            ("test_julianday", test_julianday),
+        ]
+    }()
+
     func test_date() {
         AssertSQL("date(\"date\")", date.date)
     }

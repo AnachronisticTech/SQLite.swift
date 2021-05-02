@@ -3,6 +3,33 @@ import SQLite
 
 class SchemaTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_drop_compilesDropTableExpression", test_drop_compilesDropTableExpression),
+            ("test_drop_compilesDropVirtualTableExpression", test_drop_compilesDropVirtualTableExpression),
+            ("test_drop_compilesDropViewExpression", test_drop_compilesDropViewExpression),
+            ("test_create_withBuilder_compilesCreateTableExpression", test_create_withBuilder_compilesCreateTableExpression),
+            ("test_create_withQuery_compilesCreateTableExpression", test_create_withQuery_compilesCreateTableExpression),
+            ("test_column_compilesColumnDefinitionExpression", test_column_compilesColumnDefinitionExpression),
+            ("test_column_withIntegerExpression_compilesPrimaryKeyAutoincrementColumnDefinitionExpression", test_column_withIntegerExpression_compilesPrimaryKeyAutoincrementColumnDefinitionExpression),
+            ("test_column_withIntegerExpression_compilesReferentialColumnDefinitionExpression", test_column_withIntegerExpression_compilesReferentialColumnDefinitionExpression),
+            ("test_column_withStringExpression_compilesCollatedColumnDefinitionExpression", test_column_withStringExpression_compilesCollatedColumnDefinitionExpression),
+            ("test_primaryKey_compilesPrimaryKeyExpression", test_primaryKey_compilesPrimaryKeyExpression),
+            ("test_unique_compilesUniqueExpression", test_unique_compilesUniqueExpression),
+            ("test_check_compilesCheckExpression", test_check_compilesCheckExpression),
+            ("test_foreignKey_compilesForeignKeyExpression", test_foreignKey_compilesForeignKeyExpression),
+            ("test_addColumn_compilesAlterTableExpression", test_addColumn_compilesAlterTableExpression),
+            ("test_addColumn_withIntegerExpression_compilesReferentialAlterTableExpression", test_addColumn_withIntegerExpression_compilesReferentialAlterTableExpression),
+            ("test_addColumn_withStringExpression_compilesCollatedAlterTableExpression", test_addColumn_withStringExpression_compilesCollatedAlterTableExpression),
+            ("test_rename_compilesAlterTableRenameToExpression", test_rename_compilesAlterTableRenameToExpression),
+            ("test_createIndex_compilesCreateIndexExpression", test_createIndex_compilesCreateIndexExpression),
+            ("test_dropIndex_compilesCreateIndexExpression", test_dropIndex_compilesCreateIndexExpression),
+            ("test_create_onView_compilesCreateViewExpression", test_create_onView_compilesCreateViewExpression),
+            ("test_create_onVirtualTable_compilesCreateVirtualTableExpression", test_create_onVirtualTable_compilesCreateVirtualTableExpression),
+            ("test_rename_onVirtualTable_compilesAlterTableRenameToExpression", test_rename_onVirtualTable_compilesAlterTableRenameToExpression),
+        ]
+    }()
+
     func test_drop_compilesDropTableExpression() {
         XCTAssertEqual("DROP TABLE \"table\"", table.drop())
         XCTAssertEqual("DROP TABLE IF EXISTS \"table\"", table.drop(ifExists: true))

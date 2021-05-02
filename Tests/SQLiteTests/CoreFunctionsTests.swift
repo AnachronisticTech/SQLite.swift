@@ -3,6 +3,30 @@ import XCTest
 
 class CoreFunctionsTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_round_wrapsDoubleExpressionsWithRoundFunction", test_round_wrapsDoubleExpressionsWithRoundFunction),
+            ("test_random_generatesExpressionWithRandomFunction", test_random_generatesExpressionWithRandomFunction),
+            ("test_length_wrapsStringExpressionWithLengthFunction", test_length_wrapsStringExpressionWithLengthFunction),
+            ("test_lowercaseString_wrapsStringExpressionWithLowerFunction", test_lowercaseString_wrapsStringExpressionWithLowerFunction),
+            ("test_uppercaseString_wrapsStringExpressionWithUpperFunction", test_uppercaseString_wrapsStringExpressionWithUpperFunction),
+            ("test_like_buildsExpressionWithLikeOperator", test_like_buildsExpressionWithLikeOperator),
+            ("test_glob_buildsExpressionWithGlobOperator", test_glob_buildsExpressionWithGlobOperator),
+            ("test_match_buildsExpressionWithMatchOperator", test_match_buildsExpressionWithMatchOperator),
+            ("test_regexp_buildsExpressionWithRegexpOperator", test_regexp_buildsExpressionWithRegexpOperator),
+            ("test_collate_buildsExpressionWithCollateOperator", test_collate_buildsExpressionWithCollateOperator),
+            ("test_ltrim_wrapsStringWithLtrimFunction", test_ltrim_wrapsStringWithLtrimFunction),
+            ("test_ltrim_wrapsStringWithRtrimFunction", test_ltrim_wrapsStringWithRtrimFunction),
+            ("test_ltrim_wrapsStringWithTrimFunction", test_ltrim_wrapsStringWithTrimFunction),
+            ("test_replace_wrapsStringWithReplaceFunction", test_replace_wrapsStringWithReplaceFunction),
+            ("test_substring_wrapsStringWithSubstrFunction", test_substring_wrapsStringWithSubstrFunction),
+            ("test_subscriptWithRange_wrapsStringWithSubstrFunction", test_subscriptWithRange_wrapsStringWithSubstrFunction),
+            ("test_nilCoalescingOperator_wrapsOptionalsWithIfnullFunction", test_nilCoalescingOperator_wrapsOptionalsWithIfnullFunction),
+            ("test_absoluteValue_wrapsNumberWithAbsFucntion", test_absoluteValue_wrapsNumberWithAbsFucntion),
+            ("test_contains_buildsExpressionWithInOperator", test_contains_buildsExpressionWithInOperator),
+        ]
+    }()
+
     func test_round_wrapsDoubleExpressionsWithRoundFunction() {
         AssertSQL("round(\"double\")", double.round())
         AssertSQL("round(\"doubleOptional\")", doubleOptional.round())

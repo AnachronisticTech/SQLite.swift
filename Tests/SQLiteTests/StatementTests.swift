@@ -2,6 +2,14 @@ import XCTest
 import SQLite
 
 class StatementTests : SQLiteTestCase {
+
+    static var allTests = {
+        return [
+            ("test_cursor_to_blob", test_cursor_to_blob),
+            ("test_zero_sized_blob_returns_null", test_zero_sized_blob_returns_null),
+        ]
+    }()
+
     override func setUp() {
         super.setUp()
         CreateUsersTable()

@@ -12,6 +12,65 @@ import SQLite3
 
 class QueryTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_select_withExpression_compilesSelectClause", test_select_withExpression_compilesSelectClause),
+            ("test_select_withStarExpression_compilesSelectClause", test_select_withStarExpression_compilesSelectClause),
+            ("test_select_withNamespacedStarExpression_compilesSelectClause", test_select_withNamespacedStarExpression_compilesSelectClause),
+            ("test_select_withVariadicExpressions_compilesSelectClause", test_select_withVariadicExpressions_compilesSelectClause),
+            ("test_select_withExpressions_compilesSelectClause", test_select_withExpressions_compilesSelectClause),
+            ("test_selectDistinct_withExpression_compilesSelectClause", test_selectDistinct_withExpression_compilesSelectClause),
+            ("test_selectDistinct_withExpressions_compilesSelectClause", test_selectDistinct_withExpressions_compilesSelectClause),
+            ("test_selectDistinct_withStar_compilesSelectClause", test_selectDistinct_withStar_compilesSelectClause),
+            ("test_join_compilesJoinClause", test_join_compilesJoinClause),
+            ("test_join_withExplicitType_compilesJoinClauseWithType", test_join_withExplicitType_compilesJoinClauseWithType),
+            ("test_join_withTableCondition_compilesJoinClauseWithTableCondition", test_join_withTableCondition_compilesJoinClauseWithTableCondition),
+            ("test_join_whenChained_compilesAggregateJoinClause", test_join_whenChained_compilesAggregateJoinClause),
+            ("test_filter_compilesWhereClause", test_filter_compilesWhereClause),
+            ("test_filter_compilesWhereClause_false", test_filter_compilesWhereClause_false),
+            ("test_filter_compilesWhereClause_optional", test_filter_compilesWhereClause_optional),
+            ("test_filter_compilesWhereClause_optional_false", test_filter_compilesWhereClause_optional_false),
+            ("test_where_compilesWhereClause", test_where_compilesWhereClause),
+            ("test_where_compilesWhereClause_false", test_where_compilesWhereClause_false),
+            ("test_where_compilesWhereClause_optional", test_where_compilesWhereClause_optional),
+            ("test_where_compilesWhereClause_optional_false", test_where_compilesWhereClause_optional_false),
+            ("test_filter_whenChained_compilesAggregateWhereClause", test_filter_whenChained_compilesAggregateWhereClause),
+            ("test_group_withSingleExpressionName_compilesGroupClause", test_group_withSingleExpressionName_compilesGroupClause),
+            ("test_group_withVariadicExpressionNames_compilesGroupClause", test_group_withVariadicExpressionNames_compilesGroupClause),
+            ("test_group_withExpressionNameAndHavingBindings_compilesGroupClause", test_group_withExpressionNameAndHavingBindings_compilesGroupClause),
+            ("test_group_withExpressionNamesAndHavingBindings_compilesGroupClause", test_group_withExpressionNamesAndHavingBindings_compilesGroupClause),
+            ("test_order_withSingleExpressionName_compilesOrderClause", test_order_withSingleExpressionName_compilesOrderClause),
+            ("test_order_withVariadicExpressionNames_compilesOrderClause", test_order_withVariadicExpressionNames_compilesOrderClause),
+            ("test_order_withArrayExpressionNames_compilesOrderClause", test_order_withArrayExpressionNames_compilesOrderClause),
+            ("test_order_withExpressionAndSortDirection_compilesOrderClause", test_order_withExpressionAndSortDirection_compilesOrderClause),
+            ("test_order_whenChained_resetsOrderClause", test_order_whenChained_resetsOrderClause),
+            ("test_reverse_withoutOrder_ordersByRowIdDescending", test_reverse_withoutOrder_ordersByRowIdDescending),
+            ("test_reverse_withOrder_reversesOrder", test_reverse_withOrder_reversesOrder),
+            ("test_limit_compilesLimitClause", test_limit_compilesLimitClause),
+            ("test_limit_withOffset_compilesOffsetClause", test_limit_withOffset_compilesOffsetClause),
+            ("test_limit_whenChained_overridesLimit", test_limit_whenChained_overridesLimit),
+            ("test_limit_whenChained_withOffset_overridesOffset", test_limit_whenChained_withOffset_overridesOffset),
+            ("test_alias_aliasesTable", test_alias_aliasesTable),
+            ("test_insert_compilesInsertExpression", test_insert_compilesInsertExpression),
+            ("test_insert_withOnConflict_compilesInsertOrOnConflictExpression", test_insert_withOnConflict_compilesInsertOrOnConflictExpression),
+            ("test_insert_compilesInsertExpressionWithDefaultValues", test_insert_compilesInsertExpressionWithDefaultValues),
+            ("test_insert_withQuery_compilesInsertExpressionWithSelectStatement", test_insert_withQuery_compilesInsertExpressionWithSelectStatement),
+            ("test_insert_encodable", test_insert_encodable),
+            ("test_insert_encodable_with_nested_encodable", test_insert_encodable_with_nested_encodable),
+            ("test_update_compilesUpdateExpression", test_update_compilesUpdateExpression),
+            ("test_update_compilesUpdateLimitOrderExpression", test_update_compilesUpdateLimitOrderExpression),
+            ("test_update_encodable", test_update_encodable),
+            ("test_update_encodable_with_nested_encodable", test_update_encodable_with_nested_encodable),
+            ("test_delete_compilesDeleteExpression", test_delete_compilesDeleteExpression),
+            ("test_delete_compilesDeleteLimitOrderExpression", test_delete_compilesDeleteLimitOrderExpression),
+            ("test_delete_compilesExistsExpression", test_delete_compilesExistsExpression),
+            ("test_count_returnsCountExpression", test_count_returnsCountExpression),
+            ("test_scalar_returnsScalarExpression", test_scalar_returnsScalarExpression),
+            ("test_subscript_withExpression_returnsNamespacedExpression", test_subscript_withExpression_returnsNamespacedExpression),
+            ("test_tableNamespacedByDatabase", test_tableNamespacedByDatabase),
+        ]
+    }()
+
     let users = Table("users")
     let id = Expression<Int64>("id")
     let email = Expression<String>("email")
@@ -375,6 +434,24 @@ class QueryTests : XCTestCase {
 }
 
 class QueryIntegrationTests : SQLiteTestCase {
+
+    static var allTests = {
+        return [
+            ("test_select", test_select),
+            ("test_prepareRowIterator", test_prepareRowIterator),
+            ("test_ambiguousMap", test_ambiguousMap),
+            ("test_select_optional", test_select_optional),
+            ("test_select_codable", test_select_codable),
+            ("test_scalar", test_scalar),
+            ("test_pluck", test_pluck),
+            ("test_insert", test_insert),
+            ("test_update", test_update),
+            ("test_delete", test_delete),
+            ("test_union", test_union),
+            ("test_no_such_column", test_no_such_column),
+            ("test_catchConstraintError", test_catchConstraintError),
+        ]
+    }()
 
     let id = Expression<Int64>("id")
     let email = Expression<String>("email")

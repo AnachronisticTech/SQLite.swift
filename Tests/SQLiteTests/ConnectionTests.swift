@@ -15,6 +15,47 @@ import SQLite3
 
 class ConnectionTests : SQLiteTestCase {
 
+static var allTests = {
+	return [
+		("test_init_withInMemory_returnsInMemoryConnection", test_init_withInMemory_returnsInMemoryConnection),
+		("test_init_returnsInMemoryByDefault", test_init_returnsInMemoryByDefault),
+		("test_init_withTemporary_returnsTemporaryConnection", test_init_withTemporary_returnsTemporaryConnection),
+		("test_init_withURI_returnsURIConnection", test_init_withURI_returnsURIConnection),
+		("test_init_withString_returnsURIConnection", test_init_withString_returnsURIConnection),
+		("test_readonly_returnsFalseOnReadWriteConnections", test_readonly_returnsFalseOnReadWriteConnections),
+		("test_readonly_returnsTrueOnReadOnlyConnections", test_readonly_returnsTrueOnReadOnlyConnections),
+		("test_changes_returnsZeroOnNewConnections", test_changes_returnsZeroOnNewConnections),
+		("test_lastInsertRowid_returnsLastIdAfterInserts", test_lastInsertRowid_returnsLastIdAfterInserts),
+		("test_lastInsertRowid_doesNotResetAfterError", test_lastInsertRowid_doesNotResetAfterError),
+		("test_changes_returnsNumberOfChanges", test_changes_returnsNumberOfChanges),
+		("test_totalChanges_returnsTotalNumberOfChanges", test_totalChanges_returnsTotalNumberOfChanges),
+		("test_prepare_preparesAndReturnsStatements", test_prepare_preparesAndReturnsStatements),
+		("test_run_preparesRunsAndReturnsStatements", test_run_preparesRunsAndReturnsStatements),
+		("test_scalar_preparesRunsAndReturnsScalarValues", test_scalar_preparesRunsAndReturnsScalarValues),
+		("test_execute_comment", test_execute_comment),
+		("test_transaction_executesBeginDeferred", test_transaction_executesBeginDeferred),
+		("test_transaction_executesBeginImmediate", test_transaction_executesBeginImmediate),
+		("test_transaction_executesBeginExclusive", test_transaction_executesBeginExclusive),
+		("test_transaction_beginsAndCommitsTransactions", test_transaction_beginsAndCommitsTransactions),
+		("test_transaction_rollsBackTransactionsIfCommitsFail", test_transaction_rollsBackTransactionsIfCommitsFail),
+		("test_transaction_beginsAndRollsTransactionsBack", test_transaction_beginsAndRollsTransactionsBack),
+		("test_savepoint_beginsAndCommitsSavepoints", test_savepoint_beginsAndCommitsSavepoints),
+		("test_savepoint_beginsAndRollsSavepointsBack", test_savepoint_beginsAndRollsSavepointsBack),
+		("test_updateHook_setsUpdateHook_withInsert", test_updateHook_setsUpdateHook_withInsert),
+		("test_updateHook_setsUpdateHook_withUpdate", test_updateHook_setsUpdateHook_withUpdate),
+		("test_updateHook_setsUpdateHook_withDelete", test_updateHook_setsUpdateHook_withDelete),
+		("test_commitHook_setsCommitHook", test_commitHook_setsCommitHook),
+		("test_rollbackHook_setsRollbackHook", test_rollbackHook_setsRollbackHook),
+		("test_commitHook_withRollback_rollsBack", test_commitHook_withRollback_rollsBack),
+		("test_createFunction_withArrayArguments", test_createFunction_withArrayArguments),
+		("test_createFunction_createsQuotableFunction", test_createFunction_createsQuotableFunction),
+		("test_createCollation_createsCollation", test_createCollation_createsCollation),
+		("test_createCollation_createsQuotableCollation", test_createCollation_createsQuotableCollation),
+		("test_interrupt_interruptsLongRunningQuery", test_interrupt_interruptsLongRunningQuery),
+		("test_concurrent_access_single_connection", test_concurrent_access_single_connection),
+	]
+}()
+
     override func setUp() {
         super.setUp()
 
@@ -412,6 +453,18 @@ class ConnectionTests : SQLiteTestCase {
 
 
 class ResultTests : XCTestCase {
+
+    static var allTests = {
+        return [
+            ("test_init_with_ok_code_returns_nil", test_init_with_ok_code_returns_nil),
+            ("test_init_with_row_code_returns_nil", test_init_with_row_code_returns_nil),
+            ("test_init_with_done_code_returns_nil", test_init_with_done_code_returns_nil),
+            ("test_init_with_other_code_returns_error", test_init_with_other_code_returns_error),
+            ("test_description_contains_error_code", test_description_contains_error_code),
+            ("test_description_contains_statement_and_error_code", test_description_contains_statement_and_error_code)
+        ]
+    }()
+
     let connection = try! Connection(.inMemory)
 
     func test_init_with_ok_code_returns_nil() {

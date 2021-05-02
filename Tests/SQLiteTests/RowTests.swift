@@ -3,6 +3,21 @@ import XCTest
 
 class RowTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_get_value", test_get_value),
+            ("test_get_value_subscript", test_get_value_subscript),
+            ("test_get_value_optional", test_get_value_optional),
+            ("test_get_value_optional_subscript", test_get_value_optional_subscript),
+            ("test_get_value_optional_nil", test_get_value_optional_nil),
+            ("test_get_value_optional_nil_subscript", test_get_value_optional_nil_subscript),
+            ("test_get_type_mismatch_throws_unexpected_null_value", test_get_type_mismatch_throws_unexpected_null_value),
+            ("test_get_type_mismatch_optional_returns_nil", test_get_type_mismatch_optional_returns_nil),
+            ("test_get_non_existent_column_throws_no_such_column", test_get_non_existent_column_throws_no_such_column),
+            ("test_get_ambiguous_column_throws", test_get_ambiguous_column_throws),
+        ]
+    }()
+
     public func test_get_value() {
         let row = Row(["\"foo\"": 0], ["value"])
         let result = try! row.get(Expression<String>("foo"))

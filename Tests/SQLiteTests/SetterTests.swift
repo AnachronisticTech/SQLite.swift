@@ -3,6 +3,25 @@ import SQLite
 
 class SetterTests : XCTestCase {
 
+    static var allTests = {
+        return [
+            ("test_setterAssignmentOperator_buildsSetter", test_setterAssignmentOperator_buildsSetter),
+            ("test_plusEquals_withStringExpression_buildsSetter", test_plusEquals_withStringExpression_buildsSetter),
+            ("test_plusEquals_withNumberExpression_buildsSetter", test_plusEquals_withNumberExpression_buildsSetter),
+            ("test_minusEquals_withNumberExpression_buildsSetter", test_minusEquals_withNumberExpression_buildsSetter),
+            ("test_timesEquals_withNumberExpression_buildsSetter", test_timesEquals_withNumberExpression_buildsSetter),
+            ("test_dividedByEquals_withNumberExpression_buildsSetter", test_dividedByEquals_withNumberExpression_buildsSetter),
+            ("test_moduloEquals_withIntegerExpression_buildsSetter", test_moduloEquals_withIntegerExpression_buildsSetter),
+            ("test_leftShiftEquals_withIntegerExpression_buildsSetter", test_leftShiftEquals_withIntegerExpression_buildsSetter),
+            ("test_rightShiftEquals_withIntegerExpression_buildsSetter", test_rightShiftEquals_withIntegerExpression_buildsSetter),
+            ("test_bitwiseAndEquals_withIntegerExpression_buildsSetter", test_bitwiseAndEquals_withIntegerExpression_buildsSetter),
+            ("test_bitwiseOrEquals_withIntegerExpression_buildsSetter", test_bitwiseOrEquals_withIntegerExpression_buildsSetter),
+            ("test_bitwiseExclusiveOrEquals_withIntegerExpression_buildsSetter", test_bitwiseExclusiveOrEquals_withIntegerExpression_buildsSetter),
+            ("test_postfixPlus_withIntegerValue_buildsSetter", test_postfixPlus_withIntegerValue_buildsSetter),
+            ("test_postfixMinus_withIntegerValue_buildsSetter", test_postfixMinus_withIntegerValue_buildsSetter),
+        ]
+    }()
+
     func test_setterAssignmentOperator_buildsSetter() {
         AssertSQL("\"int\" = \"int\"", int <- int)
         AssertSQL("\"int\" = 1", int <- 1)

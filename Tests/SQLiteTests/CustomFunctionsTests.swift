@@ -2,6 +2,14 @@ import XCTest
 import SQLite
 
 class CustomFunctionNoArgsTests : SQLiteTestCase {
+
+    static var allTests = {
+        return [
+            ("testFunctionNoOptional", testFunctionNoOptional),
+            ("testFunctionResultOptional", testFunctionResultOptional),
+        ]
+    }()
+
     typealias FunctionNoOptional              = ()  -> Expression<String>
     typealias FunctionResultOptional          = ()  -> Expression<String?>
 
@@ -23,6 +31,16 @@ class CustomFunctionNoArgsTests : SQLiteTestCase {
 }
 
 class CustomFunctionWithOneArgTests : SQLiteTestCase {
+
+    static var allTests = {
+        return [
+            ("testFunctionNoOptional", testFunctionNoOptional),
+            ("testFunctionLeftOptional", testFunctionLeftOptional),
+            ("testFunctionResultOptional", testFunctionResultOptional),
+            ("testFunctionLeftResultOptional", testFunctionLeftResultOptional),
+        ]
+    }()
+
     typealias FunctionNoOptional              = (Expression<String>)  -> Expression<String>
     typealias FunctionLeftOptional            = (Expression<String?>) -> Expression<String>
     typealias FunctionResultOptional          = (Expression<String>)  -> Expression<String?>
@@ -62,6 +80,20 @@ class CustomFunctionWithOneArgTests : SQLiteTestCase {
 }
 
 class CustomFunctionWithTwoArgsTests : SQLiteTestCase {
+
+    static var allTests = {
+        return [
+            ("testNoOptional", testNoOptional),
+            ("testLeftOptional", testLeftOptional),
+            ("testRightOptional", testRightOptional),
+            ("testResultOptional", testResultOptional),
+            ("testFunctionLeftRightOptional", testFunctionLeftRightOptional),
+            ("testFunctionLeftResultOptional", testFunctionLeftResultOptional),
+            ("testFunctionRightResultOptional", testFunctionRightResultOptional),
+            ("testFunctionLeftRightResultOptional", testFunctionLeftRightResultOptional),
+        ]
+    }()
+
     typealias FunctionNoOptional              = (Expression<String>,  Expression<String>)  -> Expression<String>
     typealias FunctionLeftOptional            = (Expression<String?>, Expression<String>)  -> Expression<String>
     typealias FunctionRightOptional           = (Expression<String>,  Expression<String?>) -> Expression<String>
