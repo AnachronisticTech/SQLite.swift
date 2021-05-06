@@ -19,6 +19,7 @@ let package = Package(
     package.targets = [
         .target(
             name: "SQLite",
+            dependencies: ["CSQLite"], 
             exclude: [
                 "Extensions/FTS4.swift",
                 "Extensions/FTS5.swift"
